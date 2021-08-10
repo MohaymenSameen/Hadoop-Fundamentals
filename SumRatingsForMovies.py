@@ -14,7 +14,7 @@ class SumRatingsForMovies(MRJob):
                 reducer=self.reducer_sort_counts
             )
         ]
-
+    """test"""
     def mapper_get_movies(self, _, line):
         (userID, movieID, rating, timestamp) = line.split('\t')
 
