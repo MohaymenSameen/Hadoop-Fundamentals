@@ -11,9 +11,7 @@ AS
      reason:chararray,
      turn_num:chararray);
 
-foreach_data = FOREACH ordersCSV GENERATE game_id,location,target,turn_num;
-
-filtered = FILTER foreach_data BY target == '"Holland"';
+filtered = FILTER ordersCSV BY target == '"Holland"';
 group_data = GROUP filtered BY (location, target);
 ordered = ORDER group_data BY group ASC;
 for_each = FOREACH ordered GENERATE FLATTEN(group) AS (location,target), COUNT($1);
